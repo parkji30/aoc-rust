@@ -4,10 +4,10 @@ use std::io::{BufRead, BufReader, Error};
 
 
 pub fn historian_hysteria() -> Result<i32, Error> {
-    let current_dir = env::current_dir().expect("Failed to get current directory");
+    let current_dir = env::current_dir()?;
     let data_path = current_dir.join("data").join("day1.txt");
     
-    let file = File::open(data_path).expect("Failed to open path");
+    let file = File::open(data_path)?;
     let reader = BufReader::new(file);
     
     let mut first_journey: Vec<i32> = Vec::new();
@@ -17,6 +17,7 @@ pub fn historian_hysteria() -> Result<i32, Error> {
         match line {
             Ok(content) => {
                 let parts: Vec<&str> = content.split_whitespace().collect();
+                // Can use map error below.
                 let left: i32 = parts[0].parse().expect("Failed to get left");
                 let right: i32 = parts[1].parse().expect("Failed to get right");
                 first_journey.push(left);
