@@ -4,6 +4,7 @@ use std::io::{BufRead, BufReader, Error};
 
 
 pub fn historian_hysteria() -> Result<i32, Error> {
+    // ? is used for default error handling.
     let current_dir = env::current_dir()?;
     let data_path = current_dir.join("data").join("day1.txt");
     
